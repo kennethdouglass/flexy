@@ -1,0 +1,510 @@
+@charset "UTF-8";
+
+body {
+ font-family: 'Open Sans', verdana, sans-serif;
+ color: #ebebeb;
+ background: #2b3e50;
+}
+
+h1, h2, h3 {
+  text-transform: lowercase;
+}
+
+a {
+  text-decoration: none;
+  color: #fba871;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #ebebeb;
+}
+
+p {
+  margin: 0 0 16px;
+} 
+
+/* =======================================================================================
+		Basic flexbox properties classed out for the demo
+======================================================================================= */
+.flexbox-main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.flexbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flexcenter {
+	justify-content: center;
+}
+
+.flexstart {
+	justify-content: flex-start;
+}
+
+.flexend {
+	justify-content: flex-end;
+}
+
+.flexaround {
+	justify-content: space-around;
+}
+
+.flexbetween {
+	justify-content: space-between;
+}
+
+.flexcenter-a {
+	align-items: center;
+}
+
+.flexstart-a {
+	align-items: flex-start;
+}
+
+.flexend-a {
+	align-items: flex-end;
+}
+
+.flexstretch-a {
+	align-items: stretch;
+}
+
+.flexbaseline-a {
+	align-items: baseline;
+}
+
+.flexnowrap {
+	flex-wrap: no-wrap;
+}
+
+.flexwrap {
+	flex-wrap: wrap;
+}
+
+.flexwrapreverse {
+	flex-wrap: wrap-reverse;
+}
+
+.flexrow {
+	flex-direction: row;
+}
+
+.flexcolumn {
+	flex-direction: column;
+}
+
+.flexcolumnreverse {
+	flex-direction: column-reverse;
+}
+
+.flexrowreverse {
+	flex-direction: row-reverse;
+}
+
+/* =======================================================================================
+		General page layout for this demo
+======================================================================================= */
+
+#page {
+  margin: 0 auto;
+  padding: 0;
+  width: 95%;
+  max-width: 1140px;
+  height: auto;
+}
+
+#notes {
+  margin: 0 auto;
+  padding: 0 0 20px;
+  width: 95%;
+  max-width: 1140px;
+  height: auto;
+}
+
+header, footer {
+  margin: 0 auto;
+  padding: 32px 0 10px;
+  width: 95%;
+  max-width: 1140px;
+  height: auto;
+}
+
+footer {
+  padding: 32px 0;
+}
+
+header hgroup {
+  align-items: center; 
+  padding-bottom: 4px;
+  border-bottom: 1px solid #4e5d6c;
+}
+
+hgroup h1 {
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+hgroup > div {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 4px;
+}
+
+#page > aside, #page > article {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+#page > aside {
+  position: relative;
+  -webkit-order: 1;
+  order: 1;
+  margin-bottom: 32px;
+  height: 100%;
+  background: #4e5d6c;
+}
+
+#page > article {
+  -webkit-order: 2;
+  order: 2;
+  color: #2b3e50;
+  background: #ebebeb;
+}
+
+#page > article {
+  border: 10px solid #4e5d6c;
+}
+  
+article h3 {
+  padding-bottom: 4px;
+  border-bottom: 1px solid #4e5d6c;
+}
+
+aside h3, aside > div {
+  padding: 10px;
+}
+
+aside h3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row;
+  margin: 0;
+  background: #485563;
+}
+
+aside h3 i.ion-android-menu {
+  display: inline-block;
+  font-style: normal;
+  cursor: pointer;
+}
+
+aside > div {
+  display: none;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  background: #4e5d6c;
+}
+
+
+/* =======================================================================================
+		Demo navigation
+======================================================================================= */
+
+ul#menu {
+  padding-bottom: 20px;
+}
+
+ul#menu li {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+ul#menu li a {
+  display: inline-block;
+  padding: 4px;
+  width: 60px;
+  text-align: center;
+  color: #ebebeb;
+  background-color: #39444e;
+  border-radius: 3px;
+}
+
+ul#menu li a:hover {
+  text-decoration: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+}
+
+ul#menu li a.m-on {
+  color: #39444e;
+  background-color: #ebebeb;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.4);
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.4);
+}
+
+ul#menu li.offsite a {
+  display: inline-block;
+  padding: 6px 0;
+  width: 100%;
+  text-align: left;
+  color: #fba871;
+  background-color: transparent;
+  border: none;
+}
+
+ul#menu li.offsite a:hover {
+  text-decoration: underline;
+  color: #ebebeb;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+ul#menu li span {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  padding: 4px 0;
+}
+
+article > section h3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+article > section {
+  padding: 20px 20px 32px;
+  height: auto;
+  overflow: auto;
+}
+
+article > section a {
+	display: inline-block;
+	padding-right: 4px;
+  color: #5374a6;
+}
+
+article > section a:hover {
+  color: #3d9d1f;
+}
+
+/* =======================================================================================
+		Demo content
+======================================================================================= */
+
+.code {
+	display: block;
+	margin: 0 0 32px;
+	padding: 10px;
+	width: 100%;
+	height: 180px;
+	color: #ebebeb;
+	border: 1px solid #4e5d6c;
+	background: #4e5d6c;
+	-webkit-box-shadow: 0 0 2px rgba(0,0,0,0.5);
+	box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.code:focus {
+	color: #4e5d6c;
+	background: #ebebeb;
+} 
+
+.demobox {
+	margin: 0 0 32px;
+	padding: 12px 24px 18px;
+  border: 1px dashed #4e5d6c;
+}
+
+.no-hpad {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.fixedht {
+	height: 320px;
+}
+
+.fixedwidth {
+	margin: 0 auto 32px;
+	width: 320px;
+}
+
+.fixedwidth2 {
+	margin: 0 auto 32px;
+	width: 400px;
+}
+
+.demobox.fixitemwidth > div {
+	-webkit-flex-basis: 100px;
+	flex-basis: 100px;
+	-webkit-flex-shrink: 0;
+	flex-shrink: 0;
+}
+
+.demobox.flexwrap > div, .demobox.flexwrapreverse > div,
+.demobox.flexcolumn > div, .demobox.flexcolumnreverse > div {
+	margin-bottom: 18px;
+}
+
+.demobox > div, .demobox2 > div {
+	display: inline-block;
+  margin: 0;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  border: 5px solid #4e5d6c;
+  -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.demobox.autowidth > div {
+	width: auto;
+}
+
+.demobox > div.init {
+	flex: initial;
+}
+
+.demobox.autowidth2 > div {
+	width: auto;
+	flex: 1;
+}
+
+.demobox > div.meone {
+	margin: 0 18px;
+	flex: 1;
+}
+
+.demobox.autowidth2 > div.metwo,
+.demobox > div.metwo {
+	flex: 2;
+}
+
+.demobox.flexstretch-a > div {
+	height: auto;
+}
+
+.demobox.flexbaseline-a > div:nth-child(odd) {
+	height: 200px;
+	font-size: 44px;
+}
+
+.demobox2.marginLeft > div {
+	margin-left: 18px;
+}
+
+.demobox2.marginLeft > div:first-child {
+	margin-left: 0;
+}
+
+.demobox > div.demobox2 {
+	display: inline-block;
+  margin: 0;
+	padding: 0;
+  width: auto;
+  height: auto;
+  border: 1px dashed #4e5d6c;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.demobox .item1, .demobox2 .item1 {
+	color: #fff;
+	background: rgba(229,74,59,1);
+}
+
+.demobox .item2, .demobox2 .item2 {
+	color: #fff;
+	background: rgba(25,185,146,1);
+}
+
+.demobox .item3, .demobox2 .item3 {
+	color: #fff;
+	background: rgba(72,125,201,1);
+}
+
+.demobox .item4, .demobox2 .item4 {
+	color: #fff;
+	background: rgba(243,156,18,1);
+}
+
+.demobox .order1 {
+	order: -2;
+}
+
+.demobox .order1oops {
+	order: 2;
+}
+
+.demobox .itemend {
+	align-self: flex-end;
+}
+
+/* =======================================================================================
+		Basic responsive layout
+======================================================================================= */
+
+@media (min-width: 600px) {
+  .flexbox-main {
+    flex-direction: row;
+  }
+  hgroup h1 {
+    text-align: left;
+  }
+  #page > aside {
+    margin-bottom: 0;
+    width: 31%;
+    -webkit-order: 2;
+    order: 2;
+  }
+  aside > div {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  #page > article {
+    width: 66%;
+    -webkit-order: 1;
+    order: 1;
+  }
+  article > section {
+    height: 470px;
+  }
+  article > section ul {
+    column-count: 2;
+  }
+  aside h3 i.ion-android-menu {
+    display: none;
+	}
+}
+

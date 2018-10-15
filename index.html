@@ -1,0 +1,978 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Flexbox Sandbox</title>
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1.0"/>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/nn.css" />
+    <link rel="stylesheet" href="css/flexbox.css" />
+    <style type="text/css">
+
+    </style>
+
+  </head>
+  <body>
+
+<header>
+  <hgroup class="flexbox">
+	<h1> Flexbox Sandbox - Stop Floating! </h1>
+	<div>
+	  <div id="today"></div>
+	</div>
+  </hgroup>
+</header>
+
+<div id="notes">
+Hint: clicking inside a code box will highlight and copy the code to the clipboard.
+</div>
+
+<div id="page" class="flexbox-main">
+
+  <article>
+  
+  	<!-- ================================= INTRO ===================================== -->
+    <section id="intro"> 
+      <h3>Introduction</h3>
+      
+<p>
+I use flex almost exclusively for the layout of web pages I create. Even so, I still need to remind myself of certain syntax when I am coding the HTML &amp; CSS for a page. For my own easy reference I created this "reminder" page.
+</p>
+
+<p>
+First came page layout using tables. It worked, but in a limited capacity and was terribly 'un-semantic'. Positioning too is limiting, even frustratingly so, when used for page layout (and IMHO impossible). Floating page elements can achieve complex layout patterns and arrangements with fairly good control - and is equally well supported by all browsers and devices - but it too has it's frustrating quirks. Now we have the CSS flexbox (flexible box) module. While it may not have 100% support across browsers (see <a href="https://caniuse.com/#feat=flexbox" class="new-win">caniuse</a> for detail on support: IE seems to have the biggest issues), it will eventually and, being aware of those specific cases, flexbox is <em>the</em> best method for page layout.
+</p>      
+     
+<p>
+This is by no means a comprehensive tutorial. My goal is to demonstrate some of the fundamental power of CSS flexbox. Hope it helps!
+</p>
+   
+      
+    </section>
+    
+    <!-- ================================= BASICS ==================================== -->
+    <section id="basics" style="display: none;"> 
+      <h3>The Basics</h3>
+<p>
+A flex layout is composed of two types of elements: containers and items. This makes sense if you understand that "layout" is really a set of nested "boxes". There is the "parent" box (the container) and the "child" boxes contained within (the items). Like this:
+</p> 
+
+		<div class="demobox">
+			<p>the container</p>
+	    <div class="item1"><span>an item 1</span></div>
+	    <div class="item2"><span>an item 2</span></div>
+	    <div class="item3"><span>an item 3</span></div>
+	    <div class="item4"><span>an item 4</span></div>
+	  </div> 
+	  
+<p>
+This paradigm should be very familiar.
+</p>
+	  
+<p>
+We can manipulate the items within a container individually with flex whereas their container determines their overall layout. On a given page, we can define different containers whose items are laid out independent of one another much as we can (and have) with floating - but with much greater control.
+</p>  
+
+<p>
+Let's start with the first step - defining the container. We do so with the following declaration. 
+</p>  
+     
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+</textarea>
+
+<p>
+(I have removed the 'container' label as my demo progresses). Here is the result of simply changing the display property to that of flex:
+</p>
+
+<div class="demobox flexbox">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+You can see an immediate result, however slight; In the default demo box, each of the items is defined as inline-block divs. When the container is defined as flex container, the items within now behave differently i.e. they take on default flex item properties, similar to how when you define an element with an absolute position, it is removed from the flow of the rest of the document i.e. it behaves differently.
+</p> 
+<p>
+Now that the container has been defined as a flex container, the browser will now respect the additional flex properties we will be exploring. Next let's look at the alignment properties.
+</p>
+   
+      
+    </section>
+    
+    <!-- ============================== ALIGNMENT ==================================== -->
+    <section id="align" style="display: none;">
+      <h3>Alignment</h3>
+
+<p>
+Alignment of the items within a container is accomplished with the <b>justify-content</b> property.
+</p>
+
+<p>
+The <b>justify-content</b> property has the following possible values. We'll look at each one when applied to our demo, starting with the first 3 that deal specifically with alignment. 
+</p>
+
+<ul class="bullet">
+	<li>center</li>
+	<li>flex-start</li>
+	<li>flex-end</li>
+	<li>space-around</li>
+	<li>space-between</li>
+</ul>
+
+<p>
+Going down the list, starting with <b>center</b>:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: center;
+}
+</textarea>
+
+<p>
+And the result:
+</p>
+
+<div class="demobox flexbox flexcenter">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+
+<p>
+Next, <b>flex-start</b>:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: flex-start;
+}
+</textarea>
+
+<p>
+And the result:
+</p>
+
+<div class="demobox flexbox flexstart">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+<b>flex-end</b> you can probably guess:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: flex-end;
+}
+</textarea>
+
+
+<div class="demobox flexbox flexend">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+Next let's look at those last 2 <b>justify-content</b> values that deal with the distribution of the items within the container.
+</p>
+
+      
+      
+      <ul style="display: none;">
+        <li><a href="https://internetingishard.com/html-and-css/flexbox/" class="new-win">Flexbox: Nº 8. of HTML &amp; CSS Is Hard</a></li>
+		<li><a href="https://nostrongbeliefs.com/flexbox-vertical-ordering/" class="new-win">Flexbox vertical ordering</a></li>
+      </ul>
+    </section>
+    
+    
+    <!-- =========================== DISTRIBUTION ==================================== -->
+    <section id="dist" style="display: none;">
+      <h3>Distribution</h3>
+
+
+<p>
+Now things begin to get exciting with <b>space-around</b>:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-around;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+No floating, no possible issues affecting any elements outside the flex container. No calculating and setting margins around the items!
+</p>
+
+<p>
+Similarly, with <b>space-between</b>:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-between;
+}
+</textarea>
+
+<div class="demobox flexbox flexbetween">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+The above is respecting the left and right horizontal padding on the demo box of 24px. To gain a full understanding for the difference with <b>space-between</b>, I'll remove that padding here:
+</p>
+
+<div class="demobox flexbox flexbetween no-hpad">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+This is very powerful stuff, wouldn't you agree? 
+</p>
+
+<p>
+One of the first questions that I had when I first starting working with flexbox is what if I want to have one item to the left (<b>flex-start</b>) and the other 3 items aligned to the right (<b>flex-end</b>)? We can accomplish this with a bit of creative thinking.
+</p>
+
+     
+      
+	  <div id="gridbox" style="display:none;">
+	    <div><span>box1</span></div>
+	    <div><span>box2</span></div>
+	    <div><span>box3</span></div>
+	    <div><span>box4</span></div>
+	    <div><span>box5</span></div>
+	    <div><span>box6</span></div>
+	    <div><span>box7</span></div>
+	    <div><span>box8</span></div>
+	  </div>
+	  <p style="display:none;">
+	  <a href="#" id="rev-rows">Toggle Row Order</a>
+	  </p>
+	  <p style="display:none;">
+	  <a href="#" id="move-2">Toggle Box 2 to first place</a>
+	  </p>
+    </section>
+    
+    
+    <!-- =============================== GROUPING ==================================== -->
+    <section id="group" style="display: none;">
+      <h3>Grouping</h3>
+
+<p>
+Up until now the HTML for the demo box has been written like this:
+</p>
+
+<textarea class="code" readonly>
+<div class="demobox">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+</textarea>
+
+<p>
+Now we'll group items 2, 3, and 4 together to get the answer we seek to the question from the previous section.
+</p>
+
+<textarea class="code" readonly>
+<div class="demobox">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="groupRight">
+		<div class="item2"><span>an item 2</span></div>
+		<div class="item3"><span>an item 3</span></div>
+		<div class="item4"><span>an item 4</span></div>
+	</div>
+</div> 
+</textarea>
+
+<p>
+Now let's add a bit more CSS. Remember, we created a new container, so it too must be declared as a flex container.
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-between;
+}
+
+.groupRight {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: flex-end;
+}
+</textarea>
+
+<div class="demobox flexbox flexbetween">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="demobox2 flexbox flex-end">
+		<div class="item2"><span>an item 2</span></div>
+		<div class="item3"><span>an item 3</span></div>
+		<div class="item4"><span>an item 4</span></div>
+	</div>
+</div> 
+
+<p>
+Okay, so now we might want some space between those items aligned right. But their container is already using the <b>flex-end</b> property, so here we can employ margins:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-between;
+}
+
+.groupRight {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: flex-end;
+	margin-left: 18px;
+}
+
+.groupRight:first-child {
+	margin-left: 0;
+}
+</textarea>
+
+<div class="demobox flexbox flexbetween">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="demobox2 flexbox flex-end marginLeft">
+		<div class="item2"><span>an item 2</span></div>
+		<div class="item3"><span>an item 3</span></div>
+		<div class="item4"><span>an item 4</span></div>
+	</div>
+</div> 
+
+<p>
+So far we have been dealing with items (elements) and their alignment etc. on the horizontal. Next we'll look at vertical alignment.
+</p>
+	  
+    </section>
+    
+    
+    <!-- ================================ V ALIGN ==================================== -->
+    <section id="valign" style="display: none;">
+      <h3>Vertical Alignment</h3>
+
+<p>
+Historically (and in some instances currently) have you ever employed this method to achieve the vertical centering of elements within their parent container? I certainly have, and still do on occasion.
+</p>
+
+<textarea class="code" readonly>
+.v-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: perspective(1px) translateY(-50%);
+  -ms-transform: perspective(1px) translateY(-50%);
+  transform: perspective(1px) translateY(-50%);
+}
+</textarea>
+
+<p>
+Flexbox makes this a lot easier and more manageable. Here I add a fixed height to our default demo box sans the grouping we looked at in the previous section using the <b>space-around</b> value for <b>justify-content</b>.
+</p>
+
+<div class="demobox flexbox flexaround fixedht">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+Now lets see what we can do with another flex property, <b>align-items</b>:
+</p>
+
+<ul class="bullet">
+	<li>center</li>
+	<li>flex-start</li>
+	<li>flex-end</li>
+	<li>stretch</li>
+	<li>baseline</li>
+</ul>
+
+<p>
+The <b>align-items</b> property is added to the container's declaration. We'll look at the <b>center</b> value first.
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround fixedht flexcenter-a">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+<b>flex-start</b>:
+</p>
+<div class="demobox flexbox flexaround fixedht flexstart-a">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+<p>
+(you might notice <b>flex-start</b> is the default)
+</p>
+
+<p>
+Here's a cool one - putting them all at the bottom of the box. There's a lot of creative 'flex'ibility with <b>flex-end</b>:
+</p>
+<div class="demobox flexbox flexaround fixedht flexend-a">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+Remember 'faux columns' and all the hacks we need to employ to create columns of equal height with differing content height? Then along came flexbox <b>stretch</b>. Of course, so far the 'item' boxes in this demo have had a fixed height, so that too needs to be removed:
+</p>
+<div class="demobox flexbox flexaround fixedht flexstretch-a">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>item 3 item 3 item 3 item 3 item 3 item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+I have not found a practical use for the <b>baseline</b> value, but it is interesting nonetheless. The item boxes are aligned vertically so that the baseline of the text within is in alignment:
+</p>
+<div class="demobox flexbox flexaround fixedht flexbaseline-a">
+	<div class="item1"><span>A</span></div>
+	<div class="item2"><span>B</span></div>
+	<div class="item3"><span>C</span></div>
+	<div class="item4"><span>D</span></div>
+</div>
+
+<p>
+Next we look at controlling the wrapping behavior of flex items.
+</p>
+
+
+	  
+    </section>
+    
+    <!-- =============================== WRAPPING ==================================== -->
+    <section id="wrap" style="display: none;">
+      <h3>Wrapping</h3>
+
+<p>
+Now we begin to get into flex properties that help to create more grid-like layouts. In this section we look at the <b>flex-wrap</b> property. It has 3 possible values: 
+</p>
+
+<ul class="bullet">
+	<li>no-wrap</li>
+	<li>wrap</li>
+	<li>wrap-reverse</li>
+</ul>
+
+<p>
+Instead of our container having a fixed height, let's fix the width. To start with, we'll use our default demo box with only a new fixed width:
+</p>
+
+<div class="demobox flexbox flexaround fixedwidth">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+As you can see, however, flex changes a lot of behaviors you might naturally assume would 'hold' e.g. the fixed width of a flex 'item'. Above the fixed width of the flex container causes the items within to <b>shrink</b> to conform to this added property value of the container. This is flex acting 'responsively' i.e. flex items remain 'flexible'. To ensure that the width of the items remains at the intended 100 pixels, we exchange the width property for the equivalent in flex-ese:
+</p>
+
+<textarea class="code" readonly>
+.demobox > div {
+	-webkit-flex-basis: 100px;
+	flex-basis: 100px;
+	-webkit-flex-shrink: 0;
+	flex-shrink: 0;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround fixedwidth fixitemwidth">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+The <b>flex-basis</b> property specifies the initial length of a flexible item.
+</p>
+
+<p>
+The <b>flex-shrink</b> property specifies how the item will shrink relative to the rest of the flexible items inside the same container.
+</p>
+
+<p>
+Now that we've cleared that up, let's see about wrapping the flex items. We'll continue to use the <b>space-around</b> value for the <b>justify-content</b> property.
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: no-wrap;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround fixedwidth fixitemwidth flexnowrap">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+And we see that <b>no-wrap</b> is the default. Now let's wrap things:
+</p>
+
+<div class="demobox flexbox flexaround fixedwidth fixitemwidth flexwrap">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+I cheated a little in the above rendering: I added an 18 pixel bottom margin to the items. By default there is no vertical spacing.
+</p>
+
+<p>
+Finally, there's <b>wrap-reverse</b>. It behaves as you might expect:
+</p>
+
+<div class="demobox flexbox flexaround fixedwidth fixitemwidth flexwrapreverse">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+To illustrate one keen attribute of this property, next I add a fifth item to the container and change the <b>justify-content</b> value to <b>center</b> and extend the fixed with so that we have 3 items in the top row. What results is a layout impossible to achieve using floats.
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround fixedwidth2 fixitemwidth flexwrap">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+	<div class="item1"><span>an item 5</span></div>
+</div> 
+
+<p>
+Next we'll look at controlling the direction of flow of the container items i.e. rows and columns.
+</p>
+	  
+    </section>
+    
+    <!-- ============================== DIRECTION ==================================== -->
+    <section id="dir" style="display: none;">
+      <h3>Direction</h3>
+
+<p>
+Back to our basic demo:
+</p>
+
+<div class="demobox flexbox flexaround">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div> 
+
+<p>
+In this section we look at the <b>flex-direction</b> property. This is especially powerful when we build responsive layouts. In the past if we had floated elements in order to achieve a horizontal, somewhat wrapping, or grid layout, we might, using CSS media queries, revert to <b>float: none;</b> for mobile, thereby stacking the elements. This often required various tweaks to get things to layout just right when going between mobile and desktop. Flex makes this a bit easier.
+</p>
+
+<p>
+First, <b>row</b>:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround flexrow">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+Yep, <b>row</b> is the default. So let's see <b>column</b>:
+</p>
+
+<div class="demobox flexbox flexaround flexcolumn">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+Consider what can be achieved when combining this with grouping. Very cool stuff. One note - if you wanted to center the column in the demo box above, you would add <b>align-items: center</b> to the container declaration. In short, the behavior of <b>justify-content</b> and <b>align-items</b> is reversed when the <b>column</b> value is employed. Next lets change the ordering of rows and columns.
+</p>
+	  
+    </section>
+    
+    <!-- ============================ CONTAINER ORDER ================================ -->
+    <section id="cord" style="display: none;">
+      <h3>Container Ordering</h3>
+
+<p>
+We just looked at the <b>flex-direction</b> property and its basic values. But there are two more values to look at: <b>row-reverse</b> and <b>column-reverse</b>. Yes, they behave as expected:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row-reverse;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround flexrowreverse">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+And:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column-reverse;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround flexcolumnreverse">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+No more JS to handle reversing element order &#9786;. 
+</p>
+
+<p>
+So we can reorder the entire content scope of a container, but what about reordering individual items?
+</p>
+	  
+    </section>
+    
+    <!-- ============================== ITEM ORDER =================================== -->
+    <section id="iord" style="display: none;">
+      <h3>Item Ordering</h3>
+
+<p>
+So far we have been adding and changing the values of properties added to the (parent) container. Now we add some 'flexibility' to individual items. Here's our trusty demo:
+</p>
+
+<div class="demobox flexbox flexaround flexrow">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+Now we'll promote item 3 to the first position. 
+</p>
+
+<textarea class="code" readonly>
+.demobox > div.item3 {
+	order: -2;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround flexrow">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3 order1"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+At first it's not too intuitive. To understand it, the default value for the <b>order</b> property is 0 (zero). So to move item 3 to the first position, we need to move it 2 places to the left. To achieve this, we use the value <b>-2</b>. If we attempt the same but leave off the negative sign:
+</p>
+
+<div class="demobox flexbox flexaround flexrow">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3 order1oops"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+
+<p>
+It has moved to the end, or as far as it can for positions available to the right i.e. it won't wrap around the first position.
+</p>
+
+<p>
+That's good for rows, but how about columns? Let's try applying the <b>order: -2</b> property to a <b>column</b>:
+</p>
+
+<textarea class="code" readonly>
+.demobox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+}
+
+.demobox > div.item3 {
+	order: -2;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround flexcolumn">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3 order1"><span>an item 3</span></div>
+	<div class="item4"><span>an item 4</span></div>
+</div>
+	  
+    </section>
+    
+    <!-- ======================= ALIGN INDIVIDUAL ITEMS ============================== -->
+    <section id="alitems" style="display: none;">
+      <h3>Aligning Individual Items Vertically</h3>
+
+<p>
+Remember our <b>align-items</b> property? Well say we had 3 items instead of 4. And we wanted the first and last to align <b>center</b>, but we wanted the center item to align <b>flex-end</b>, or at the bottom of the container? No problem with flex. Like ordering in the last section, we can tell individual items to behave independent of what is declared in the container properties. Let's start with the example just mentioned:
+</p>
+
+<div class="demobox flexbox flexaround fixedht flexcenter-a">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+</div> 
+
+<p>
+Now we can use the <b>align-self</b> property on item 2 directly:
+</p>
+
+<textarea class="code" readonly>
+.demobox > div.item2 {
+	align-self: flex-end;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround fixedht flexcenter-a">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2 itemend"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+</div> 
+
+<p>
+Easy. The <b>align-self</b> property accepts all of the same values as <b>align-items</b>:
+</p>
+
+<ul class="bullet">
+	<li>center</li>
+	<li>flex-start</li>
+	<li>flex-end</li>
+	<li>stretch</li>
+	<li>baseline</li>
+</ul>
+	  
+    </section>
+    
+    <!-- ============================ FLEXING ITEMS ================================== -->
+    <section id="flex" style="display: none;">
+      <h3>Flexing Items</h3>
+
+<p>
+Let's use the same 3 item container as in the last section for this next demo, only this time let's remove the fixed width of each item. For clarity, we'll simply set the width as <b>auto</b>. Remember, as we saw in the 'wrapping' section, if "squeezed", the width value will no longer adhere and the width of each item will conform to the width of the container, unless, of course, we were to employ the <b>flex-basis</b> property. But that is moot here. Here is the set up for this last demo:
+</p>
+
+<textarea class="code" readonly>
+.demobox > div {
+	width: auto;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround autowidth">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+</div> 
+
+<p>
+Each of the items is spaced equally (because we are using <b>justify-content: space-around</b>). Now we add to the container the property <b>flex</b> with a value of <b>1</b>:
+</p>
+
+<div class="demobox flexbox flexaround autowidth2">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+</div> 
+
+<p>
+The value <b>1</b> tells the items to stretch equally inside the container's width. Now using the same property but this time on an individual item's declaration - in this case the center item again - with a value of <b>2</b>:
+</p>
+
+<div class="demobox flexbox flexaround autowidth2">
+	<div class="item1"><span>an item 1</span></div>
+	<div class="item2 metwo"><span>an item 2</span></div>
+	<div class="item3"><span>an item 3</span></div>
+</div> 
+
+<p>
+Now let's add the <b>flex</b> property with the value <b>initial</b> to each of the other two items, causing the first and third items to fallback to their original defined width of 100 pixels. We'll also add some right and left margins to the middle item:
+</p>
+
+<textarea class="code" readonly>
+.demobox > div.meone {
+	margin: 0 18px;
+	flex: 1;
+}
+
+.demobox > div.init {
+	flex: initial;
+}
+</textarea>
+
+<div class="demobox flexbox flexaround">
+	<div class="item1 init"><span>an item 1</span></div>
+	<div class="item2 meone"><span>an item 2</span></div>
+	<div class="item3 init"><span>an item 3</span></div>
+</div>
+
+<p>
+This is powerful when you consider footer layout, often using columns of differing widths. Now you can achieve that without defining fixed widths that wrap when you don't want them too &#9786;.
+</p>
+	  
+    </section>
+  
+  </article>
+  
+  <aside>
+    <h3><span>Menu</span><i class="ion ion-android-menu">&#9776;;</i></h3>
+    <div>
+      <ul id="menu">
+      	<li><span class="" id="m-intro-i">Introduction</span><a href="#" id="m-intro" class="m-on">see</a></li>
+        <li><span class="" id="m-basics-i">Basics</span><a href="#" id="m-basics">look</a></li>
+        <li><span class="" id="m-align-i">Alignment</span><a href="#" id="m-align">look</a></li>
+        <li><span class="" id="m-dist-i">Distribution</span><a href="#" id="m-dist">look</a></li>
+        <li><span class="" id="m-group-i">Grouping</span><a href="#" id="m-group">look</a></li>
+        <li><span class="" id="m-valign-i">Vertical Alignment</span><a href="#" id="m-valign">look</a></li>
+        <li><span class="" id="m-wrap-i">Wrapping</span><a href="#" id="m-wrap">look</a></li>
+        <li><span class="" id="m-dir-i">Direction</span><a href="#" id="m-dir">look</a></li>
+        <li><span class="" id="m-cord-i">Container Ordering</span><a href="#" id="m-cord">look</a></li>
+        <li><span class="" id="m-iord-i">Item Ordering</span><a href="#" id="m-iord">look</a></li>
+        <li><span class="" id="m-alitems-i">Align Items Vertically</span><a href="#" id="m-alitems">look</a></li>
+        <li><span class="" id="m-flex-i">Flexing Items</span><a href="#" id="m-flex">look</a></li>
+      </ul>
+    </div>
+  </aside>
+  
+  
+
+</div>
+
+<footer>
+<p>Brought to you by <a href="http://kennethmdouglass.com" class="new-win">http://kennethmdouglass.com</a></p>
+</footer>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 
+
+  <script type="text/javascript" src="js/_main.js"></script>
+
+    </body> 
+</html>
